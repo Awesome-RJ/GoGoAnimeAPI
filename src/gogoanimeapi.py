@@ -126,7 +126,7 @@ class gogoanime():
                 gen_ani.append({"title":f"{tits}", "animeid":f"{r[2]}"})
             gen_ani_res.append(gen_ani)
             return gen_ani_res
-        except AttributeError or KeyError:
+        except (AttributeError, KeyError):
             return {"status":"400", "reason":"Invalid genre_name or page_num"}
         except requests.exceptions.ConnectionError:
             return {"status": "404", "reason": "Check the host's network Connection"}
