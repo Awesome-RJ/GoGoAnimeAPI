@@ -190,6 +190,6 @@ This error occurs when the user entered an incorrect data.
 ```{'status': '400', 'reason': 'Invalid genre_name or page_num'}```
 
 
-## Copyrights © 2021 BaraniARR.,
+## Copyrights © 2021 Awesome-RJ.,
 
 ### Licensed under MIT License.,
