@@ -130,6 +130,3 @@ class gogoanime():
             return {"status":"400", "reason":"Invalid genre_name or page_num"}
         except requests.exceptions.ConnectionError:
             return {"status": "404", "reason": "Check the host's network Connection"}
-
-
-
