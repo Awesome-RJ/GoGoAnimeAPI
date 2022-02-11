@@ -93,7 +93,7 @@ class gogoanime():
             dowCode = requests.get(URL)
             data = dowCode.text
             soup = BeautifulSoup(data, "lxml")
-            dow_url= soup.findAll('div',{'class':'dowload'})
+            dow_url = soup.findAll('div',{'class':'dowload'})
             episode_res_link = {'title':f"{tit_url}"}
             for i in range(len(dow_url)):
                 Url = dow_url[i].find('a')
