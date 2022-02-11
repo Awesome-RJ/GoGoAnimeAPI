@@ -28,8 +28,7 @@ class gogoanime():
                 res_list_search.append({"name":f"{tit}","animeid":f"{r[2]}"})
             if res_list_search == []:
                 return {"status":"204", "reason":"No search results found for the query"}
-            else:
-                return res_list_search
+            return res_list_search
         except requests.exceptions.ConnectionError:
             return {"status":"404", "reason":"Check the host's network Connection"}
 
