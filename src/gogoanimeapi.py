@@ -13,7 +13,7 @@ class gogoanime():
 
     def get_search_results(query):
         try:
-            url1 = f"https://gogoanime2.org/search.html?keyword={query}"
+            url1 = f"https://gogoanime.fi/search.html?keyword={query}"
             session = HTMLSession()
             response = session.get(url1)
             response_html = response.text
@@ -35,7 +35,7 @@ class gogoanime():
 
     def get_anime_details(animeid):
         try:
-            animelink = 'https://gogoanime2.org/category/{}'.format(animeid)
+            animelink = 'https://gogoanime.fi/category/{}'.format(animeid)
             response = requests.get(animelink)
             plainText = response.text
             soup = BeautifulSoup(plainText, "lxml")
@@ -74,7 +74,7 @@ class gogoanime():
 
     def get_episodes_link(animeid, episode_num):
         try:
-            animelink = f'https://gogoanime2.org/category/{animeid}'
+            animelink = f'https://gogoanime.fi/category/{animeid}'
             response = requests.get(animelink)
             plainText = response.text
             soup = BeautifulSoup(plainText, "lxml")
@@ -112,7 +112,7 @@ class gogoanime():
 
     def get_by_genre(genre_name, page):
         try:
-            url = f"https://gogoanime2.org/genre/{genre_name}?page={page}"
+            url = f"https://gogoanime.fi/genre/{genre_name}?page={page}"
             response = requests.get(url)
             plainText = response.text
             soup = BeautifulSoup(plainText, "lxml")
