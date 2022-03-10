@@ -26,7 +26,7 @@ class gogoanime():
                 urll = anime.a["href"]
                 r = urll.split('/')
                 res_list_search.append({"name":f"{tit}","animeid":f"{r[2]}"})
-            if res_list_search == []:
+            if not res_list_search:
                 return {"status":"204", "reason":"No search results found for the query"}
             return res_list_search
         except requests.exceptions.ConnectionError:
@@ -49,9 +49,7 @@ class gogoanime():
             plot_summary = sum.join(pl)
             type_of_show = lis[0].a['title']
             ai = lis[2].find_all('a')  # .find_all('title')
-            genres = []
-            for link in ai:
-                genres.append(link.get('title'))
+            genres = [link.get('title') for link in ai]
             year1 = lis[3].get_text()
             year2 = year1.split(" ")
             year = year2[1]
@@ -64,8 +62,18 @@ class gogoanime():
             last_ep_range = a_tag_sliced[-1]
             y = last_ep_range.split("-")
             ep_num = y[-1]
-            res_detail_search = {"title":f"{tit_url}", "year":f"{year}", "other_names":f"{oth_names}", "type":f"{type_of_show}", "status":f"{status}", "genre":f"{genres}", "episodes":f"{ep_num}", "image_url":f"{imgg}","plot_summary":f"{plot_summary}"}
-            return res_detail_search
+            return {
+                "title": f"{tit_url}",
+                "year": f"{year}",
+                "other_names": f"{oth_names}",
+                "type": f"{type_of_show}",
+                "status": f"{status}",
+                "genre": f"{genres}",
+                "episodes": f"{ep_num}",
+                "image_url": f"{imgg}",
+                "plot_summary": f"{plot_summary}",
+            }
+
         except AttributeError:
             return {"status":"400", "reason":"Invalid animeid"}
         except requests.exceptions.ConnectionError:
@@ -102,7 +110,7 @@ class gogoanime():
                 str_spl.remove(str_spl[0])
                 str_original = ""
                 quality_name = str_original.join(str_spl)
-                episode_res_link.update({f"{quality_name}":f"{downlink}"})
+                episode_res_link[f"{quality_name}"] = f"{downlink}"
             return episode_res_link
         except AttributeError:
             return {"status":"400", "reason":"Invalid animeid or episode_num"}
